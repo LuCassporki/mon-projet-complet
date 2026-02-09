@@ -1,0 +1,20 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [ main ] # Se déclenche quand on push sur main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connexion SSH et Mise à jour
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}     # L'adresse de ton serveur
+          username: ${{ secrets.SERVER_USER }} # Ton nom d'utilisateur (ex: root)
+          key: ${{ secrets.SSH_PRIVATE_KEY }} # Ta clé de sécurité
+          script: |
+            cd /var/www/mon-projet-complet
+            git pull origin main
+            docker-compose up --build -d
