@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Mon App Echo</title>
+</head>
+<body>
+    <h1>Test de connexion</h1>
+    <button id="btn">Appeler le Back-End</button>
+    <p id="reponse"></p>
+
+    <script>
+        const button = document.getElementById('btn');
+        const display = document.getElementById('reponse');
+
+        button.addEventListener('click', async () => {
+            try {
+                // On appelle l'adresse de notre serveur Node.js
+                const res = await fetch('http://localhost:5000/api/hello');
+                const data = await res.json();
+                
+                // On affiche le message reçu
+                display.innerText = data.message + " (Reçu à : " + data.date + ")";
+            } catch (error) {
+                display.innerText = "Erreur : Le serveur est-il lancé ?";
+            }
+        });
+    </script>
+</body>
+</html>
