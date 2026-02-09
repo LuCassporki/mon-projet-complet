@@ -13,17 +13,19 @@
         const display = document.getElementById('reponse');
 
         button.addEventListener('click', async () => {
-            try {
-                // On appelle l'adresse de notre serveur Node.js
-                const res = await fetch('http://localhost:5000/api/hello');
-                const data = await res.json();
-                
-                // On affiche le message reçu
-                display.innerText = data.message + " (Reçu à : " + data.date + ")";
-            } catch (error) {
-                display.innerText = "Erreur : Le serveur est-il lancé ?";
-            }
-        });
+    try {
+        const res = await fetch('/api/hello'); // On utilise l'URL simplifiée via Nginx
+        const data = await res.json();
+        
+        // MISE À JOUR ICI : On affiche le message ET le compteur
+        display.innerHTML = `
+            <strong>Message :</strong> ${data.message} <br>
+            <strong>Nombre de visites en base :</strong> ${data.compteur}
+        `;
+    } catch (error) {
+        display.innerText = "Erreur : Le serveur est-il lancé ?";
+    }
+});
     </script>
 </body>
 </html>
