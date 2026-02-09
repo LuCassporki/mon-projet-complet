@@ -23,15 +23,25 @@ services:
       - ./gateway/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "80:80" # Ton site sera accessible sur http://localhost tout court !
-    depends_on:
-      - backend
-      - frontend
+   
 
       # --- LA MÉMOIRE (NOUVEAU) ---
   database:
     image: mongo:latest
+    ports:
+      - "27017:27017" # <--- Ajoute cette ligne
     volumes:
       - mongodb_data:/data/db # Pour ne pas perdre tes données si tu coupes Docker
 
+
+  admin-db:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=database
+    depends_on:
+      - database
+      
 volumes:
   mongodb_data: # Espace de stockage permanent

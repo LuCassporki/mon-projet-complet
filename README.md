@@ -50,3 +50,44 @@ docker ps : Voir si mes conteneurs sont vivants.
 docker-compose logs -f : Voir les erreurs en temps réel.
 docker-compose stop : Éteindre l'application.
 git add . && git commit -m "update" && git push : Sauvegarder et envoyer.
+
+
+
+
+1. Côté Design (HTML/CSS)
+Tu peux transformer ton bouton tout moche en une interface magnifique.
+Utilise un framework comme Tailwind CSS ou simplement du CSS propre.
+Ton fichier frontend/index.html est ton bac à sable.
+
+2. Côté Fonctionnalités (JS/Back)
+C'est là que ça devient puissant. Tu peux créer de nouvelles routes.
+Exemple : Créer une page de "Livre d'or".
+Front : Tu ajoutes un <input> pour que l'utilisateur tape son nom.
+Back : Tu crées une route app.post('/api/message') pour enregistrer ce nom en base de données.
+
+3. Côté Système (Docker)
+Tu n'y toucheras presque plus. La seule raison d'y revenir serait d'ajouter un nouvel outil (par exemple, un service pour envoyer des emails ou un autre pour stocker des images).
+
+
+💡 Un petit rappel pour la suite :
+À chaque fois que tu ajoutes une bibliothèque Node.js (comme bcrypt pour les mots de passe ou dotenv), n'oublie pas :
+1-Fais le npm install dans le dossier backend.
+2-Relance un docker-compose up --build pour que Docker mette à jour sa "boîte" avec le nouvel outil.
+
+Ton mémo est maintenant ton meilleur ami.
+Si un jour tu veux créer un deuxième projet, tu n'auras qu'à copier-coller tes fichiers docker-compose.yml et gateway/default.conf. Tu gagneras des heures de travail !
+
+
+
+-Ouvre MongoDB Compass et connecte-toi avec cette adresse : 
+--mongodb://localhost:27017 
+Tu verras alors ta base "mon_app" et ta collection "visites" avec tout ce qui a été enregistré !
+
+-méthode "Commando" (Dans le terminal)
+--docker ps
+-Entre à l'intérieur du conteneur (remplace nom_du_conteneur par celui trouvé, souvent c'est mon-projet-database-1) :
+docker exec -it nom_du_conteneur mongosh
+-Une fois dans le "shell" MongoDB (le curseur change), tu peux taper des commandes :
+--show dbs (pour voir les bases).
+--use mon_app (pour entrer dans la tienne).
+--db.visites.find() (pour voir toutes les données enregistrées).
