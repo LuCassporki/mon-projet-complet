@@ -91,3 +91,42 @@ docker exec -it nom_du_conteneur mongosh
 --show dbs (pour voir les bases).
 --use mon_app (pour entrer dans la tienne).
 --db.visites.find() (pour voir toutes les données enregistrées).
+
+
+
+**********commandes******************
+📦 Docker & OrchestrationC'est ce qui gère tes "boîtes" (conteneurs) et l'infrastructure.
+Commande,                     Description
+docker-compose up --build      ,La plus importante. Construit les images et lance tous les services.
+docker-compose up -d           ,"Lance les services en arrière-plan (détaché), pour libérer ton terminal."
+docker-compose down            ,Arrête et supprime tous les conteneurs du projet.
+docker-compose logs -f         ,Affiche les erreurs et messages de tous les services en temps réel.
+docker-compose ps              ,Liste tes services et montre s'ils sont Up (en vie) ou Exit (crashés).
+docker system prune -a         Si un jour rien ne marche et Docker "bugue", tout nettoyer (attention, ça vide le cache)
+
+
+🛠️ Node.js & Modules (npm)
+À utiliser à l'intérieur du dossier backend/ pour gérer les outils de ton serveur.
+Commande,              Description
+npm init -y            ,Crée le fichier package.json (la carte d'identité du projet).
+npm install express    ,Installe le framework pour créer l'API (les routes).
+npm install mongoose   ,Installe l'outil pour parler à la base de données MongoDB.
+npm install cors       ,Installe la sécurité pour autoriser ton Front à parler au Back.
+
+
+🛡️ Système & Sécurité (Windows/PowerShell)
+Les commandes pour débloquer ton ordinateur et naviguer.
+Commande,                             Description
+Set-ExecutionPolicy RemoteSigned     ,Autorise Windows à lancer des scripts (comme npm).
+cd nom_du_dossier                    ,Change Directory : pour entrer dans un dossier (ex: cd backend).
+cd ..                                ,Remonte d'un niveau dans les dossiers (pour revenir à la racine).
+ls (ou dir)                          ,Liste tous les fichiers présents dans le dossier actuel.
+
+
+🚀 Git & Déploiement
+Pour sauvegarder ton travail et l'envoyer sur ton serveur distant.
+Commande,                            Description
+git add .                           ,Prépare tous tes changements pour la sauvegarde.
+"git commit -m ""message"""         ,Crée un point de sauvegarde avec un petit texte explicatif.
+git push origin main                ,Envoie tes sauvegardes sur GitHub.
+ssh user@ip                         ,Te connecte à distance sur ton serveur de production.
