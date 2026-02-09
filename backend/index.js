@@ -1,19 +1,35 @@
-const express = require('express'); // Importation de l'outil
+const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
+
 const app = express();
+app.use(cors());
+app.use(express.json()); // Permet au serveur de lire le JSON envoyé par le front
 
-app.use(cors()); // Activation de la sécurité "CORS"
+// 1. Connexion à MongoDB (l'adresse 'database' est définie par Docker)
+mongoose.connect('mongodb://database:27017/mon_app')
+    .then(() => console.log("Connecté à MongoDB !"))
+    .catch(err => console.error("Erreur de connexion :", err));
 
-// On crée une "Route" : quand on ira sur /api/hello, le serveur répondra
-app.get('/api/hello', (req, res) => {
+// 2. Définition du modèle (À quoi ressemble une donnée ?)
+const VisiteSchema = new mongoose.Schema({
+    date: { type: Date, default: Date.now },
+    navigateur: String
+});
+const Visite = mongoose.model('Visite', VisiteSchema);
+
+// 3. Route pour enregistrer et lire
+app.get('/api/hello', async (req, res) => {
+    // On enregistre une nouvelle visite à chaque appel
+    await Visite.create({ navigateur: req.headers['user-agent'] });
+    
+    // On compte le nombre total de visites
+    const totalVisites = await Visite.countDocuments();
+    
     res.json({ 
-        message: "Salut ! Le Back-end fonctionne parfaitement.",
-        status: "Success"
+        message: "Salut ! C'est enregistré en base de données.",
+        compteur: totalVisites
     });
 });
 
-// Le serveur écoute sur le port 5000
-const PORT = 5000;
-app.listen(PORT, () => {
-    console.log(`Serveur démarré sur http://localhost:${PORT}`);
-});
+app.listen(5000, () => console.log("Serveur prêt sur le port 5000"));
