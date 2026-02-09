@@ -130,3 +130,88 @@ git add .                           ,Prépare tous tes changements pour la sauve
 "git commit -m ""message"""         ,Crée un point de sauvegarde avec un petit texte explicatif.
 git push origin main                ,Envoie tes sauvegardes sur GitHub.
 ssh user@ip                         ,Te connecte à distance sur ton serveur de production.
+
+
+
+
+*************** memo V2 *******************
+# 🚀 Mon Projet Fullstack (Livre d'Or)
+
+Ce projet est une application web complète utilisant une architecture moderne micro-services conteneurisée avec Docker.
+
+## 🏗️ L'Architecture
+- **Frontend** : HTML5 / JavaScript (Interface utilisateur)
+- **Backend** : Node.js & Express (API REST)
+- **Database** : MongoDB (Stockage des messages)
+- **Admin DB** : Mongo Express (Interface de gestion de la base)
+- **Gateway** : Nginx (Reverse Proxy & Serveur de fichiers statiques)
+
+---
+
+## 🛠️ Installation et Lancement
+
+### 1. Pré-requis
+- Avoir [Docker](https://www.docker.com/) installé.
+- (Windows uniquement) Avoir autorisé les scripts dans PowerShell :
+  `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
+### 2. Lancer l'application
+À la racine du projet, exécute la commande suivante :
+```bash
+docker-compose up --build
+
+
+L'application sera disponible sur :
+Site Web : http://localhost
+
+Gestion Base de données :
+http://localhost:8081
+
+
+📑 Aide-mémoire des Commandes (Cheat Sheet)
+🐳 Docker Compose
+Commande,Action
+docker-compose up --build              ,Reconstruit et lance tout le projet
+docker-compose down                    ,Arrête et supprime tous les services
+docker-compose logs -f                 ,Affiche les erreurs en temps réel
+docker-compose ps                      ,Vérifie l'état des services (Up ou Exit)
+
+
+🟢 Backend (Node.js)
+À exécuter dans le dossier /backend :
+npm install : Installe les dépendances (Express, Mongoose, Cors)
+npm install <nom-du-paquet> : Ajoute un nouvel outil au serveur
+
+
+
+💾 Base de données
+Service : MongoDB (port 27017)
+URL de connexion : 
+mongodb://database:27017/mon_app
+
+
+
+🚀 Déploiement (Production)
+Pousser le code sur GitHub : 
+git push origin main
+
+Se connecter au serveur : 
+ssh user@votre-ip
+
+Récupérer le code : 
+git pull
+
+Lancer en arrière-plan : 
+docker-compose up -d
+
+---
+
+### 💡 Le petit plus
+
+
+Avec ce fichier, ton projet est "pro". Tu as maintenant :
+1.  **Le code** (tes fichiers JS/HTML/YAML).
+2.  **L'infrastructure** (tes Dockerfiles).
+3.  **La documentation** (ton README).
+
+C'est exactement ce qu'on attend d'un développeur aujourd'hui. 
